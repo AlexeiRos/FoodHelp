@@ -1,3 +1,11 @@
-from django.contrib import admin
+from PIL import Image
 
-# Register your models here.
+from django.forms import ModelChoiceField, ModelForm, ValidationError
+from django.contrib import admin
+from django.utils.safestring import mark_safe
+
+from.models import *
+
+
+class IngredientsAdmin(admin.AdminModel):
+    pass
