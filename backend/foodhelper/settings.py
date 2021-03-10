@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'FoodHelperdb',
         'USER': 'FoodHelperuser',
         'PASSWORD': '12345',
-        'HOST': 'localhost',
+        'HOST': '192.168.1.203',
         'PORT': '5432',
     }
 }
