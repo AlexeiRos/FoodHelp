@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'foodhelper.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'arigato',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': 'FoodHelperdb',
+        'USER': 'FoodHelperuser',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '5432',
     }
