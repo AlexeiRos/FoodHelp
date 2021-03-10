@@ -7,5 +7,5 @@ from django.utils.safestring import mark_safe
 from.models import *
 
 
-class IngredientsAdmin(admin.AdminModel):
+class IngredientsAdmin(admin.ModelAdmin):
     pass
