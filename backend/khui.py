@@ -1,2 +1,3 @@
 Mercyplusa khuilo "arigato nya"
-"chechevitsa ny!"
+"chechevitsa nya"
+pizdec
