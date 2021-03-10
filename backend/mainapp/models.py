@@ -23,11 +23,15 @@ class CategoryManager(models.Manager):
 class Category(models.Model):
 
     name = models.CharField(max_length=255, verbose_name='Имя категории')
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=50, blank=True, unique=True)
     objects = CategoryManager()
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Имя категории'
+        verbose_name_plural = 'Имя категорий'
 
 
 class Product(models.Model):
@@ -40,6 +44,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Имя продукта'
+        verbose_name_plural = 'Имя продуктов'
 
 
 class Recipe(Product):
