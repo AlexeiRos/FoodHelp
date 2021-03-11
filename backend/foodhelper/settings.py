@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'foodhelper.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'FoodHelperdb',
-        'USER': 'FoodHelperuser',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
+        'NAME': 'd9en2tf69kvadc',
+        'USER': 'tjrhcfddfpvktj',
+        'PASSWORD': '3a29939904fb451dc3470cf385935984e3275294b1e097926d4f5a36137c70dd',
+        'HOST': 'ec2-54-73-147-133.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
