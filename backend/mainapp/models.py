@@ -13,11 +13,48 @@ from io import BytesIO
 User = get_user_model()
 
 
+def get_models_for_count(*model_names):
+    return [models.Count(model_name) for model_name in model_names]
+
+
+class LatestProductsManager:
+
+    @staticmethod
+    def get_products_for_main_page(*args, **kwargs):
+        with_respect_to = kwargs.get('with_respect_to')
+        products = []
+        ct_models = ContentType.objects.filter(model__in=args)
+        for ct_model in ct_models:
+            model_products = ct_model.model_class()._base_manager.all().order_by('-id')[:5]
+            products.extend(model_products)
+        if with_respect_to:
+            ct_model = ContentType.objects.filter(model=with_respect_to)
+            if ct_model.exists():
+                if with_respect_to in args:
+                    return sorted(
+                        products, key=lambda x: x.__class__._meta.model_name.startswith(with_respect_to), reverse=True
+                    )
+        return products
+
+
+class LatestProducts:
+
+    objects = LatestProductsManager()
+
+
 class CategoryManager(models.Manager):
 
     CATEGORY_NAME_COUNT_NAME = {
-        'Ингредиенты': 'ingredients__count'
+        'Рецепты': 'Recipe__count'
     }
+
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get_categories_for_sidebar(self):
+        models = get_models_for_count('recipe')
+        qs = list(self.get_queryset().annotate(*models).values())
+        return [dict(name=c['name'], slug=c['slug'], count=c[self.CATEGORY_NAME_COUNT_NAME[c['name']]]) for c in qs]
 
 
 class Category(models.Model):
@@ -45,10 +82,6 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-    class Meta:
-        verbose_name = 'Имя продукта'
-        verbose_name_plural = 'Имя продуктов'
-
 
 class Recipe(Product):
 
@@ -66,4 +99,4 @@ class Customer(models.Model):
     address = models.CharField(max_length=255, verbose_name='Адрес')
 
     def __str__(self):
-        return "Покупатель: {} {}".format(self.user.first_name, self.user.last_name)
+        return "Пользователь: {} {}".format(self.user.first_name, self.user.last_name)
