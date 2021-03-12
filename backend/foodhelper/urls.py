@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from mainapp import views
-
+from mainapp.views import test_view, ProductDetailView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'posts', views.CategoryViewSet)
@@ -28,5 +28,6 @@ urlpatterns = [
     path('', views.food),
     path(r'api/', include(router.urls)),
     path(r'', views.food, name='index'),
-
+    path('', test_view, name='base'),
+    path('products/<str:ct_model>/<str:slug>/', ProductDetailView.as_view(), name='food')
 ]

@@ -1,12 +1,24 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.views.generic import DetailView
 from rest_framework import viewsets, permissions
-from .models import Category
+from .models import Recipe, Category
 from . import serializers
+
+
+def test_view(request):
+    return render(request, 'food.html', {'categories': ''})
 
 
 def food(request, path=''):
     return render(request, 'food.html')
+
+
+class ProductDetailView(DetailView):
+
+    CT_MODEL_MODEL_CLASS = {
+        'recipe': Recipe,
+    }
 
 
 class UserViewSet(viewsets.ModelViewSet):
