@@ -1,5 +1,4 @@
 import sys
-from PIL import Image
 
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -100,3 +99,7 @@ class Customer(models.Model):
 
     def __str__(self):
         return "Пользователь: {} {}".format(self.user.first_name, self.user.last_name)
+
+    class Meta:
+        verbose_name = 'Имя пользователя'
+        verbose_name_plural = 'Имя пользователей'

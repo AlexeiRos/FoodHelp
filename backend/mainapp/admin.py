@@ -1,4 +1,3 @@
-from PIL import Image
 
 from django.forms import ModelChoiceField, ModelForm, ValidationError
 from django.contrib import admin
@@ -15,7 +14,7 @@ class RecipeAdminForm(ModelForm):
 
 class RecipeAdmin(admin.ModelAdmin):
 
-    change_form_template = 'food.html'
+    change_form_template = 'Recipe.html'
     form = RecipeAdminForm
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
