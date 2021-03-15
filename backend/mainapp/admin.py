@@ -14,7 +14,6 @@ class RecipeAdminForm(ModelForm):
 
 class RecipeAdmin(admin.ModelAdmin):
 
-    change_form_template = 'Recipe.html'
     form = RecipeAdminForm
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):

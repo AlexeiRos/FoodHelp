@@ -55,11 +55,6 @@ class CategoryManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset()
 
-    def get_categories_for_sidebar(self):
-        models = get_models_for_count('recipe')
-        qs = list(self.get_queryset().annotate(*models).values())
-        return [dict(name=c['name'], slug=c['slug'], count=c[self.CATEGORY_NAME_COUNT_NAME[c['name']]]) for c in qs]
-
 
 class Category(models.Model):
 
