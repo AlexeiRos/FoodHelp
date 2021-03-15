@@ -25,3 +25,11 @@ class CustomerViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = CustomerSerializer
 
+
+class RecipeViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.all()
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = RecipeSerializer
+
