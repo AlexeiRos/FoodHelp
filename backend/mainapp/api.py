@@ -1,6 +1,5 @@
-from .models import Category, Product
 from rest_framework import viewsets, permissions
-from .serializers import CategorySerializer, ProductSerializer
+from .serializers import *
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -17,4 +16,12 @@ class ProductViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = ProductSerializer
+
+
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = CustomerSerializer
 
