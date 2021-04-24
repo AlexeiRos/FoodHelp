@@ -1,12 +1,109 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Домашняя страница</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'mainapp/css/main.css' %}">
+  <title>Shop Homepage - Start Bootstrap Template</title>
 </head>
+<style>
+    body {
+      padding-top: 56px;
+    }
+
+</style>
 <body>
-    <h1>
-        Пиздецкий пиздец
-    </h1>
+
+  <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">Кушац</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+      </div>
+    <li>
+        {% if not request.user.is_authenticated %}
+    <li>
+        <a class="nav-link text-light" href="{% url 'login' %}">Авторизация</a>
+    </li>
+     <li>
+        <a class="nav-link text-light" href="{% url 'registration' %}">Регистрация</a>
+    </li>
+    {% endif %}
+    <li class="nav-item">
+        {% if request.user.is_authenticated %}<span class="navbar text text-light">Здравствуйте<span class="badge badge-danger"></span>
+        <a style="text-decoration: none; font-size:14px; color:white;" href="/">{{ request.user.username }}</a>{% endif %}
+            </span></span>
+    </li>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row mx-0 mx-lg-n3">
+
+      <div class="col-lg-3 col-12 mt-5">
+        <div class="list-group">
+          {% for category in categories %}
+          <a href="{{ category.url }}" class="list-group-item">{{ category.name }} ({{ category.count }})</a>
+          {% endfor %}
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-9 col-12">
+        {% block content %}
+        {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+        {% endif %}
+
+          <div class="pb-3 pt-5">
+              <img class="d-block img-fluid" src="https://ysia.ru/wp-content/uploads/2018/05/glavnaya-1.jpg" alt="First slide">
+          </div>
+        <!-- /.row -->
+      {% endblock content %}
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-3  bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Directed by APPLE</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
+
 </html>

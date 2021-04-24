@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from mainapp.views import food
 from django.conf import settings
+
+from mainapp.views import food
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', food, name='Хавчик'),
-    path('api/', include('mainapp.urls')),
+    path('', food, name='Пельмени'),
+    path('', include('mainapp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

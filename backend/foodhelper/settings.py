@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mainapp',
     'rest_framework',
     'corsheaders',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,7 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:4200",
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CORS_ALLOW_ALL_ORIGINS = True
 django_heroku.settings(locals())
