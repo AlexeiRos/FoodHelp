@@ -3,7 +3,7 @@ from django.views.generic import DetailView
 from .models import Recipe
 
 
-def food(request, path=''):
+def food(request):
     return render(request, 'food.html')
 
 

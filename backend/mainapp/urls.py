@@ -1,3 +1,4 @@
+from django.urls import path, include
 from rest_framework import routers
 from .api import *
 
@@ -9,4 +10,7 @@ router.register(r'Customer', CustomerViewSet)
 router.register(r'Recipe', RecipeViewSet)
 
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),
+
+]
