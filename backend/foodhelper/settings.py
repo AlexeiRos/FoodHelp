@@ -143,3 +143,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CORS_ALLOW_ALL_ORIGINS = True
 django_heroku.settings(locals())
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
